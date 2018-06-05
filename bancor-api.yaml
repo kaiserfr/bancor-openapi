@@ -1,0 +1,10 @@
+openapi: 3.0.0
+info:
+  title: Bancor API
+  version: 0.1
+servers:
+  - url: https://api.bancor.network/0.1
+paths:
+  /currencies/convertiblePairs:
+    get:
+      description: returns token pairs in the Bancor network
