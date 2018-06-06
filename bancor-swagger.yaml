@@ -122,3 +122,174 @@ paths:
         "405":
           description: "Invalid input"
     
+  /currencies/{TokenType}:
+    get:
+      tags:
+        - "Token Data API"
+      summary: "The Tokens API returns all the available data we have for the tokens on the Bancor network"
+      parameters:
+        - in: path
+          name: TokenType
+          type: string
+          required: true
+          description: from currency code          
+        - in: query
+          name: fromCurrencyCode
+          type: string
+          required: true
+          description: from currency code          
+        - in: query
+          name: orderBy
+          type: string
+          required: true
+          description: from currency code          
+        - in: query
+          name: sortOrder
+          type: string
+          required: true
+          description: from currency code          
+        - in: query
+          name: limit
+          type: integer
+          required: true
+          description: from currency code          
+        - in: query
+          name: skip
+          type: integer
+          required: true
+          description: from currency code          
+        - in: query
+          name: includeTotal
+          type: string
+          required: true
+          description: from currency code          
+      description: "The “Tokens” API returns all the available data we have for the tokens on the Bancor network"
+      operationId: "tokendata"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "A list of currency pairs"
+          
+          # TODO START
+          
+          schema: 
+            type: object
+            properties:
+              data:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    symbol:
+                      type: string
+                    code:
+                      type: string
+                    decimals:
+                      type: integer
+                    price24hHigh:
+                      type: number
+                    price24hLow:
+                      type: number
+                    price:
+                      type: number
+                    price24h:
+                      type: number
+                    volume24h:
+                      type: number
+                    totalSupply:
+                      type: number
+          
+            # TODO END  
+          
+            example:
+              data:
+                currencies:
+                  page:
+                    - _id: 
+                        594bb7e468a95e00203b048d
+                      symbol:
+                        BNT
+                      type:
+                        ethereum
+                      details: 
+                          type: 
+                            bancor
+                          subType: 
+                            smart
+                          contractAddress: 
+                            0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c
+                          supply: 
+                            74775281083523725963087643
+                          changer: 
+                              type: 
+                                bancor
+                              version: 
+                                0.4
+                              contractAddress: 
+                                0xb626a5facc4de1c813f5293ec3be31979f1d1c78
+                              isActive: 
+                                true
+                              activatedAt: 
+                                2017-06-22T07:00:00.000Z
+                          reserves: 
+                              5937d635231e97001f744267: 
+                                  contractAddress: 
+                                    0xc0829421c1d260bd3cb3e0f06cfe2d52db2ce315
+                                  currencySymbol: 
+                                    Ξ
+                                  ratio: 
+                                    100000
+                                  numDecimalDigits: 
+                                    18
+                                  balance: 
+                                    44001842276537681939982
+                                    
+                      status: 
+                        published
+                      stage: 
+                        traded
+                      createdAt: 
+                        2017-06-22T07:00:00.000Z
+                      numDecimalDigits: 
+                        18
+                      primaryCommunityId: 
+                        5967699a4a93370018b7b891
+                      primaryCommunityImageName: 
+                        f80f2a40-eaf5-11e7-9b5e-179c6e04aa7c.png
+                      code: 
+                        BNT
+                      name: 
+                        Bancor
+                      isDeleted: 
+                        false
+                      order: 
+                        300
+                      isDiscoverable: 
+                        true
+                      originalCurrencyId: 
+                        594bb7e468a95e00203b048d
+                      price: 
+                        0.005601948072580547
+                      change24h: 
+                        -0.6927365621230122
+                      priceHistory: 
+                        - 0.005402214902240569
+                        - 0.005395380959829653
+                        - 0.0054027228791513554
+                        - 0.0054169721726570474
+                        - 0.0054272558732494725
+                        - 0.0054234447922943
+                        - 0.0054256918705245655
+                        - 0.005419196473339037
+                        - 0.0054195260470858726
+                        - 0.00542393109888581
+                        - 0.005433983220550033
+                        - 0.005435785025313575
+                        - 0.005435071993213968
+                        - 0.0054502152560918435
+        "405":
+          description: "Invalid input"
+        
