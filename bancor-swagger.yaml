@@ -1,0 +1,39 @@
+swagger: "2.0"
+info:
+  description: "Bancor API"
+  version: "0.1"
+  title: "Bancor API"
+host: "api.bancor.network"
+basePath: "/0.1"
+tags:
+- name: "Available pairs API"
+  description: "The “Pairs” API returns token pairs in the Bancor network"
+  externalDocs:
+    description: "Find out more"
+    url: "https://support.bancor.network/hc/en-us/articles/360002262111-Available-Pairs-API"
+- name: "Price Ticker API"
+  description: "The “Ticker” API returns all relevant data (name, symbol, code, decimals, price 24h high, price 24h low, price, price 24h, volume 24h, total supply) for the specific pair."
+schemes:
+- "https"
+paths:
+  /currencies/convertiblePairs:
+    get:
+      tags:
+        - "Available pairs API"
+      summary: "Add a new pet to the store"
+      description: ""
+      operationId: "convertiblePairs"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "A list of currency pairs"
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                additionalProperties:
+                  type: string
+        "405":
+          description: "Invalid input"
