@@ -13,6 +13,10 @@ tags:
     url: "https://support.bancor.network/hc/en-us/articles/360002262111-Available-Pairs-API"
 - name: "Price Ticker API"
   description: "The “Ticker” API returns all relevant data (name, symbol, code, decimals, price 24h high, price 24h low, price, price 24h, volume 24h, total supply) for the specific pair."
+- name: "Token Data API"
+  description: "The “Tokens” API returns all the available data we have for the tokens on the Bancor network"
+- name: "Price Discovery (value) API"
+  description: "The “Price Discover” API returns the expected amount of tokens you will receive when executing a transaction of a certain size using the Bancor Price Discovery formula."
 schemes:
 - "https"
 paths:
@@ -35,5 +39,86 @@ paths:
                 type: object
                 additionalProperties:
                   type: string
+            example:
+              data:
+                BNT:
+                  ETH
+                STX:
+                  BNT
+                KICK:
+                  BNT
         "405":
           description: "Invalid input"
+
+  /currencies/{tokenCode}/ticker:
+    get:
+      tags:
+        - "Price Ticker API"
+      summary: "Return relevant data for a specific pair"
+      parameters:
+        - in: path
+          name: tokenCode
+          type: string
+          required: true
+          description: token currency code
+        - in: query
+          name: fromCurrencyCode
+          type: string
+          required: true
+          description: from currency code          
+      description: "The Ticker API returns all relevant data (name, symbol, code, decimals, price 24h high, price 24h low, price, price 24h, volume 24h, total supply) for the specific pair."
+      operationId: "pairdata"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "A list of currency pairs"
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    symbol:
+                      type: string
+                    code:
+                      type: string
+                    decimals:
+                      type: integer
+                    price24hHigh:
+                      type: number
+                    price24hLow:
+                      type: number
+                    price:
+                      type: number
+                    price24h:
+                      type: number
+                    volume24h:
+                      type: number
+                    totalSupply:
+                      type: number
+            example:
+              data:
+                name:
+                  Bancor
+                symbol:
+                  BNT
+                code:
+                  BNT
+                decimals:
+                  18
+                totalSupply:
+                  76144409802769222094564556
+                price: 
+                  0.006928393832718147
+                volume24h:
+                  3331656543586311766200
+                price24h: 
+                  0.0069663958745948325        
+        "405":
+          description: "Invalid input"
+    
